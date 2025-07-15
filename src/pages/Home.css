@@ -1,0 +1,171 @@
+body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  color: white;
+  background: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(10, 10, 20, 0.95)),
+    url("/assets/dark-galaxy.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+}
+
+/* Page container */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1e1e1e;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  z-index: 100;
+}
+
+/* Outer container */
+.outer-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* Glassy content box */
+.content-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  background-color: rgba(28, 28, 28, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Glitchy Marvel Title */
+.main-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #00ffff;
+  position: relative;
+  animation: glitch-flicker 2s infinite;
+}
+
+.main-title::before,
+.main-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  color: #ff00cc;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.main-title::before {
+  text-shadow: 2px 0 red;
+  animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+.main-title::after {
+  text-shadow: -2px 0 cyan;
+  animation: glitch-anim2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-flicker {
+  0%, 100% { opacity: 1; }
+  49% { opacity: 1; }
+  50% { opacity: 0.8; }
+  52% { opacity: 1; }
+  53% { opacity: 0.7; }
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(42px, 9999px, 44px, 0); transform: translate(0.5px, -1px); }
+  20% { clip: rect(12px, 9999px, 14px, 0); transform: translate(-1px, 0.5px); }
+  40% { clip: rect(52px, 9999px, 54px, 0); transform: translate(1px, -0.5px); }
+  60% { clip: rect(22px, 9999px, 24px, 0); transform: translate(-0.5px, 1px); }
+  80% { clip: rect(62px, 9999px, 64px, 0); transform: translate(1px, 1px); }
+  100% { clip: rect(32px, 9999px, 34px, 0); transform: translate(-1px, -1px); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(12px, 9999px, 14px, 0); transform: translate(-1px, 1px); }
+  20% { clip: rect(42px, 9999px, 44px, 0); transform: translate(1px, -1px); }
+  40% { clip: rect(62px, 9999px, 64px, 0); transform: translate(-1px, 1px); }
+  60% { clip: rect(32px, 9999px, 34px, 0); transform: translate(1px, -1px); }
+  80% { clip: rect(22px, 9999px, 24px, 0); transform: translate(-1px, 1px); }
+  100% { clip: rect(52px, 9999px, 54px, 0); transform: translate(1px, -1px); }
+}
+
+/* Search & sort */
+.search-sort-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.search-sort-wrapper input,
+.search-sort-wrapper select {
+  height: 42px;
+  padding: 10px 16px;
+  line-height: 1.2;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #1e1e1e;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+.search-sort-wrapper input:focus,
+.search-sort-wrapper select:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 8px #00ffff55;
+}
+
+/* Pagination */
+.pagination-wrapper {
+  margin-top: 3rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .search-sort-wrapper {
+    flex-direction: column;
+  }
+
+  .search-sort-wrapper > * {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .content-wrapper {
+    padding: 1rem;
+  }
+}

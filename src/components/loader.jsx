@@ -4,7 +4,8 @@ import "./Loader.css";
 const Loader = () => {
   return (
     <div className="loader-wrapper">
-      <div className="glitch-loader">LOADING...</div>
+      <div className="spinner"></div>
+      <div className="loader-text">Loading Heroes...</div>
     </div>
   );
 };

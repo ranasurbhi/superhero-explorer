@@ -1,13 +1,87 @@
 .character-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
-  padding: 2rem;
+  padding: 2rem 0;
   justify-items: center;
   align-items: stretch;
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
+}
+
+.character-grid .card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  max-width: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-grid .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.character-grid .card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
+  border-color: var(--neon-blue);
+}
+
+.character-grid .card:hover::before {
+  opacity: 0.1;
+}
+
+.character-grid .card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.character-grid .card:hover img {
+  transform: scale(1.05);
+}
+
+.character-grid .card h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.character-grid .card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 400;
 }
 
 .character-grid p {
@@ -18,24 +92,9 @@
   margin-top: 2rem;
 }
 
-.character-grid .card {
-  animation: fadeZoom 0.5s ease forwards;
-  opacity: 0;
-  transform: scale(0.95);
-  width: 100%;
-  height: 100%;
-}
-
-@keyframes fadeZoom {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @media (max-width: 768px) {
   .character-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.2rem;
     padding: 1.5rem 1rem;
   }
